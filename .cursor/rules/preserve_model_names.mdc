@@ -1,0 +1,20 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Preservar Nombres de Variables de Modelos
+
+- **No Cambiar Nombres:** Al re-estimar, refinar o seleccionar un modelo final para una variable, **SIEMPRE** sobrescribir la variable del modelo original. No crear nuevos nombres como `_final`, `_exhaustive`, `_new`, `_std`, etc.
+- **Consistencia:** Mantener el nombre original (e.g., `model_emae_arg`, `model_ipc_chi`) a lo largo de todo el proceso para esa serie.
+- **Ejemplo:** Si se re-estima `model_emae_arg` con diferentes parámetros de `auto.arima` o manualmente con `Arima`, el resultado final debe asignarse de nuevo a `model_emae_arg`.
+
+```R
+# INCORRECTO:
+model_emae_arg_final <- auto.arima(..., stepwise=FALSE)
+
+# CORRECTO:
+model_emae_arg <- auto.arima(..., stepwise=FALSE) # Sobrescribe la variable original
+```
+
+- **Propósito:** Asegurar que el código subsiguiente (pronósticos, evaluaciones) siempre utilice la versión más actualizada y final del modelo sin necesidad de cambiar las referencias.

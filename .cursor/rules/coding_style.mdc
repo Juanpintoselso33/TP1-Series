@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Reglas de Estilo de Código
+
+- **Comentarios Claros:** Asegúrate de que todas las líneas de código relevantes estén comentadas de forma clara y concisa, explicando su propósito.
+- **Longitud de Línea:** Mantén todas las líneas de código y comentarios por debajo de los 80 caracteres para mejorar la legibilidad.
+

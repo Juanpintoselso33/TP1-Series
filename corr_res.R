@@ -1,5 +1,5 @@
 #********************************************************
-#*#   CORRELOGRAMA DE LOS RESIDUOS DE UNA REGRESIÓN
+#* #   CORRELOGRAMA DE LOS RESIDUOS DE UNA REGRESIÓN
 #********************************************************
 # Versión 16/07/2024     Encoding: UTF-8
 
@@ -9,36 +9,36 @@
 # lags: cuántos lags se desea analizar (debe ser<=T/3)
 # p_q:cantidad de parámetros ar y  ma incluídos en la regresión
 
-corr_res=function(xreg,lags=12,p_q) {
-res=xreg$residuals
-T=length(res)
-if(lags>T/3) {
-  print("Elija una cantidad menor de lags")}
-else {
-a=p_q
-lag=c()
-q_values=c()
-p_values=c()
-for(i in 1:lags)   {
-  lag=c(lag,i)  
-  warn<-options(warn=-1)
-  p=Box.test(xreg$residuals,lag=i,type="Ljung", fitdf=a)
-  options(warn)
-  q_values=c(q_values,round(p$statistic, digits=4))
-  if(i<=a){
-    p_values=c(p_values,"NA")
+corr_res <- function(xreg, lags = 12, p_q) {
+  res <- xreg$residuals
+  T <- length(res)
+  if (lags > T / 3) {
+    print("Elija una cantidad menor de lags")
   } else {
-  p_values=c(p_values,round(p$p.value, digits=4))
+    a <- p_q
+    lag <- c()
+    q_values <- c()
+    p_values <- c()
+    for (i in 1:lags) {
+      lag <- c(lag, i)
+      warn <- options(warn = -1)
+      p <- Box.test(xreg$residuals, lag = i, type = "Ljung", fitdf = a)
+      options(warn)
+      q_values <- c(q_values, round(p$statistic, digits = 4))
+      if (i <= a) {
+        p_values <- c(p_values, "NA")
+      } else {
+        p_values <- c(p_values, round(p$p.value, digits = 4))
+      }
+    }
   }
-}
-}
 
-correlograma=cbind(lag,q_values,p_values)
-rownames(correlograma)=NULL
-colnames(correlograma)=c("lag","Estadistico Q","p-value")
-return(correlograma)
-options(digits=4)
-print(correlograma)
+  correlograma <- cbind(lag, q_values, p_values)
+  rownames(correlograma) <- NULL
+  colnames(correlograma) <- c("lag", "Estadistico Q", "p-value")
+  return(correlograma)
+  options(digits = 4)
+  print(correlograma)
 }
 ##########################################################
 # ejemplo:

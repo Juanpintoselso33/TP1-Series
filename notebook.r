@@ -295,6 +295,8 @@ corr_res(
 # + vscode={"languageId": "r"}
 # IPC Chile: Mejora del modelo con enfoque mixto
 
+# TODO: probar desestacionalizacion x-12 con seasonal
+
 # 1. Ajuste manual del modelo considerando componente estacional explícito
 model_ipc_chi <- Arima(
   dl_ipc_chi_train,
@@ -764,7 +766,7 @@ if (!exists("end_eval")) end_eval <- c(2023, 12)
 
 series_config_chi <- list(
   list(name = "IMACEC Chi", model = model_imacec_chi, original_ts = ts_imacec, needs_xreg_future = FALSE),
-  list(name = "IPC Chi", model = model_ipc_chi_reg, original_ts = ts_ipc_chi, needs_xreg_future = TRUE),
+  list(name = "IPC Chi", model = model_ipc_chi, original_ts = ts_ipc_chi, needs_xreg_future = TRUE),
   list(name = "M2 Chi", model = model_m2_chi, original_ts = ts_m2_chi, needs_xreg_future = FALSE),
   list(name = "TASA Chi", model = model_tasa_chi, original_ts = ts_tasa_chi, needs_xreg_future = FALSE)
 )
